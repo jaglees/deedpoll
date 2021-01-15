@@ -17,7 +17,7 @@ func main(){
   flag.Parse()
 
   // Declare variables and initialise
-  var config *config.Config
+  var conf config.Config
   initVariables(*cmdVerbose)
 
   // Check to see if mandatory parameters and flags are set
@@ -25,33 +25,23 @@ func main(){
     displayHelp()
   } else if (len(flag.Args()) < 1 ){
     fmt.Println("You must enter the name of at least one file to process, use -help to see further details")
-
   } else if (*cmdType == ""){
     fmt.Println("You must define the type of file being processed, use -help to see further details")
-  } else {
 
+  } else {
     var configFile string
     log.Debug("Params: Rules=[", *cmdRules, "] Type=[", *cmdType, "] Output=[" , *cmdOutputDir, "]")
+
+    // Determine the correct config file to use for this job and load the config.
     if (*cmdRules == ""){
       configFile= fmt.Sprintf("%s.cf", *cmdType)
     } else {
       configFile= *cmdRules
     }
-    config = loadConfig( configFile )
-
-    log.Debug("--- Configuration ---")
-    log.Debug(config)
+    log.Debug("Config pre-loaded = [",conf,"]")
+    config.LoadConfig( configFile, &conf )
+    log.Debug("Config loaded = [",conf,"]")
   }
-}
-
-func loadConfig(configFile string) *config.Config {
-  log.Debug("Loading config from ", configFile)
-  s := `{"Type":"customer","Header": true , "delimiter" : "," ,  "fields": [] }`
-  config, err := config.NewConfig(&s)
-  if (err != nil){
-    panic("Could not parse config file ["+configFile+"]: "+err.Error())
-  }
-  return config
 }
 
 func displayHelp(){

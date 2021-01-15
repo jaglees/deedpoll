@@ -14,15 +14,15 @@ type Config struct {
 
 type Field struct {
   Name string
-  Width string
+  Width int
   Mode string
   RegEx string
-  PresentRatio int
+  PresentRatio float32
 }
 
-func NewConfig(configJson *string) (*Config, error) {
+func NewConfig(configJson []byte) (*Config, error) {
   var c Config
-  err := json.Unmarshal( []byte(*configJson), &c )
+  err := json.Unmarshal( configJson, &c )
   if (err != nil){
     return &c, err
   } else {
