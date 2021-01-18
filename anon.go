@@ -42,8 +42,14 @@ func main(){
     }
 
     log.Debug("main: Config pre-loaded = [",conf,"]")
-    config.LoadConfig( configFile, &conf )
+    err := config.LoadConfig( configFile, &conf )
+    if err != nil{
+      panic("Could not load config file "+configFile+". Run with -verbose to see detailed errors")
+    }
     log.Debug("main: Config loaded = [",conf,"]")
+
+    // Call method to process each file
+    processFiles()
   }
 }
 
