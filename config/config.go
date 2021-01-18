@@ -20,6 +20,7 @@ type Field struct {
   PresentRatio float32
 }
 
+// NewConfig function constructs a config type based on a Json object expressed as a bytestring
 func NewConfig(configJson []byte) (*Config, error) {
   var c Config
   err := json.Unmarshal( configJson, &c )
