@@ -8,7 +8,7 @@ import (
 )
 
 var conf config.Config
-
+var inputFiles []string
 
 func main(){
   // Capture command line switches to tool
@@ -18,6 +18,7 @@ func main(){
   cmdVerbose := flag.Bool("verbose", false, "(optional) Determines if debug logs are produced, outputting more details during the execution")
   cmdOutputDir := flag.String("output", "./output/", "(optional) The folder to put the resulting files")
   flag.Parse()
+  inputFiles = flag.Args()
 
   // Declare variables and initialise
   initVariables(*cmdVerbose)
@@ -25,7 +26,7 @@ func main(){
   // Check to see if mandatory parameters and flags are set
   if (*cmdHelp){
     displayHelp()
-  } else if (len(flag.Args()) < 1 ){
+  } else if (len(inputFiles) < 1 ){
     fmt.Println("You must enter the name of at least one file to process, use -help to see further details")
   } else if (*cmdType == ""){
     fmt.Println("You must define the type of file being processed, use -help to see further details")
