@@ -27,10 +27,9 @@ func main(){
     fmt.Println("You must enter the name of at least one file to process, use -help to see further details")
   } else if (*cmdType == ""){
     fmt.Println("You must define the type of file being processed, use -help to see further details")
-
   } else {
     var configFile string
-    log.Debug("Params: Rules=[", *cmdRules, "] Type=[", *cmdType, "] Output=[" , *cmdOutputDir, "]")
+    log.Debug("main: Params... Rules=[", *cmdRules, "] Type=[", *cmdType, "] Output=[" , *cmdOutputDir, "]")
 
     // Determine the correct config file to use for this job and load the config.
     if (*cmdRules == ""){
@@ -38,9 +37,10 @@ func main(){
     } else {
       configFile= *cmdRules
     }
-    log.Debug("Config pre-loaded = [",conf,"]")
+
+    log.Debug("main: Config pre-loaded = [",conf,"]")
     config.LoadConfig( configFile, &conf )
-    log.Debug("Config loaded = [",conf,"]")
+    log.Debug("main: Config loaded = [",conf,"]")
   }
 }
 
