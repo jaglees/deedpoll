@@ -7,6 +7,9 @@ import (
   log "github.com/sirupsen/logrus"
 )
 
+var conf config.Config
+
+
 func main(){
   // Capture command line switches to tool
   cmdHelp := flag.Bool("help", false, "Loads the help screen" )
@@ -17,7 +20,6 @@ func main(){
   flag.Parse()
 
   // Declare variables and initialise
-  var conf config.Config
   initVariables(*cmdVerbose)
 
   // Check to see if mandatory parameters and flags are set
