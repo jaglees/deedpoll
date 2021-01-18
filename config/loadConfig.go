@@ -7,10 +7,11 @@ import (
     "io/ioutil"
 )
 
+// LoadConfig function loads the configuration from a config file into a config.Config type
 func LoadConfig(configFile string, conf *Config) error {
   log.Debug("config: Loading config from ", configFile)
 
-  if configFile==""{
+  if configFile=="" {
     return errors.New("config: No config file specified")
   }
 
@@ -25,18 +26,6 @@ func LoadConfig(configFile string, conf *Config) error {
     log.Error("config: Cannot read file: " +configFile)
     return err
   }
-
-  // s := `{"Type":"customer","Header": true , "delimiter" : "," ,  "fields": [        {
-  //             "name": "lineNo",
-  //             "mode": "origional",
-  //             "presentRatio": 1
-  //         },
-  //         {
-  //             "name": "customerId",
-  //             "mode": "token",
-  //             "regEx": "[A-Z]{3}[0-9]{3}",
-  //             "presentRatio": 1
-  //         }] }`
 
   c, err := NewConfig(byteValue)
   if (err != nil){
