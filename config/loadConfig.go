@@ -20,6 +20,7 @@ func LoadConfig(configFile string, conf *Config) error {
      log.Error("config: Cannot open file: " +configFile)
      return err
   }
+  defer jsonFile.close()
 
   byteValue, err := ioutil.ReadAll(jsonFile)
   if err!=nil{
