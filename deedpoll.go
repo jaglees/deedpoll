@@ -3,7 +3,7 @@ package main
 import (
   "flag"
   "fmt"
-  "github.com/jaglees/go-anon/config"
+  "github.com/jaglees/deedpoll/config"
   log "github.com/sirupsen/logrus"
 )
 

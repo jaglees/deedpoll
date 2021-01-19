@@ -1,4 +1,4 @@
-module github.com/jaglees/go-anon
+module github.com/jaglees/deedpoll
 
 go 1.15
 

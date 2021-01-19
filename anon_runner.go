@@ -3,7 +3,7 @@ package main
 import (
   // "github.com/jaglees/go-anon/config"
   log "github.com/sirupsen/logrus"
-  "github.com/jaglees/go-anon/files"
+  "github.com/jaglees/deedpoll/files"
   "sync"
 )
 
