@@ -6,7 +6,7 @@ import (
 )
 
 // Test with no file specified to read
-func TestLoadConfigNoFile( t *testing.T){
+func TestNewFileReader( t *testing.T){
 
   err, _ := NewFileReader("")
   expectedError := "open : no such file or directory"
